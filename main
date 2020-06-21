@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=1,walltime=0:10:00,vmem=30gb
+#PBS -N qoala-t
+
+fsdirs=$(jq -r .output[] config.json)
+numFsDirs=$(( $(echo $fsdirs | wc -w) - 1 ))
+read -ra fsdirsArr <<< $fsdirs
+
+mkdir -p workdir
+mkdir -p Output_Qoala_T
+
+for i in $(seq 0 $numFsDirs); do
+  ln -sf ${fsdirsArr[$i]} `pwd`/workdir/output${i}
+done
+
+time singularity exec -e docker://davhunt/r-qoala:1.0.1 bash -c "Rscript ./Stats2Table.R `pwd` && \
+    Rscript ./Qoala_T_A_model_based_github.R `pwd`"
