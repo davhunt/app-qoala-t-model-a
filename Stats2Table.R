@@ -118,7 +118,7 @@ main <- function(){
     print(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
     print("asdf")
     if (!length(subjectDirs[x])==0){
-      setwd(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
+      setwd(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
     }
 #    print(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
 #    setwd(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
