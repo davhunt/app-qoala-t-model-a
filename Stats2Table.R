@@ -112,10 +112,14 @@ main <- function(){
   subjectDirs <- unique(list.dirs('.', recursive=FALSE)) # Get all sample subject
   for (x in 0:length(subjectDirs)){
     setwd(datasetDir)
+    print(datasetDir)
     print(paste(datasetDir, subjectDirs[x], sep=""))
+    print("ok")
     print(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
-    print(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
-    setwd(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
+    print("asdf")
+    setwd(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
+#    print(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
+#    setwd(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
 #    setwd(paste(datasetDir, subjectDirs[x], sep=""))
     statsDirs <- list.dirs('.', recursive=FALSE)
     if (file.exists("./stats/aseg.stats")){
