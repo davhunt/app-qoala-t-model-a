@@ -123,7 +123,8 @@ main <- function(){
 #    print(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
 #    setwd(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
 #    setwd(paste(datasetDir, subjectDirs[x], sep=""))
-    statsDirs <- unique(list.dirs('.', recursive=FALSE))
+    statsDirs <- unique(list.dirs(recursive=FALSE))
+#    statsDirs <- unique(list.dirs('.',recursive=FALSE))
     if (file.exists("./stats/aseg.stats")){
       subjectTable <- readFiles()
       subjectTable <- preprocTable(subjectTable)
