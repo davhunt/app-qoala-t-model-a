@@ -10,7 +10,8 @@ mkdir -p workdir
 mkdir -p Output_Qoala_T
 
 for i in $(seq 0 $numFsDirs); do
-  ln -sf ${fsdirsArr[$i]} `pwd`/workdir/output${i}
+  abspath=$(realpath ${fsdirsArr[$i]})
+  ln -sf ${abspath} `pwd`/workdir/output${i}
 done
 
 time singularity exec -e docker://davhunt/r-qoala:1.0.1 bash -c "Rscript ./Stats2Table.R `pwd` && \
