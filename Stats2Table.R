@@ -117,13 +117,13 @@ main <- function(){
     print("ok")
     print(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
     print("asdf")
-    if (first == F){
+    if (!length(subjectDirs[x]==0)){
       setwd(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
     }
 #    print(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
 #    setwd(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
 #    setwd(paste(datasetDir, subjectDirs[x], sep=""))
-    statsDirs <- list.dirs('.', recursive=FALSE)
+    statsDirs <- unique(list.dirs('.', recursive=FALSE))
     if (file.exists("./stats/aseg.stats")){
       subjectTable <- readFiles()
       subjectTable <- preprocTable(subjectTable)
