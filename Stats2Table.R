@@ -110,14 +110,16 @@ main <- function(){
   subjects <- c()
   first <- T
   subjectDirs <- unique(list.dirs('.', recursive=FALSE)) # Get all sample subject
-  for (x in 1:length(subjectDirs)){
+  for (x in 0:length(subjectDirs)){
     setwd(datasetDir)
     print(datasetDir)
     print(paste(datasetDir, subjectDirs[x], sep=""))
     print("ok")
     print(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
     print("asdf")
-    setwd(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
+    if (first == F){
+      setwd(Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")))
+    }
 #    print(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
 #    setwd(paste("../",Sys.readlink(paste(datasetDir, subjectDirs[x], sep="")),sep=""))
 #    setwd(paste(datasetDir, subjectDirs[x], sep=""))
