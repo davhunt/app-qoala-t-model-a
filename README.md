@@ -7,6 +7,9 @@ This app uses a supervised learning model trained on 784 Freesurfer subjects, to
 
 Given a set of subjects processed with Freesurfer, Qoala-T gives each subject's segmentations a rating and indicates whether the data should be excluded and/or given manual QC. The tool is ideal then for large datasets where manual QC may be infeasible, and for developmental subjects who may have lower quality scans.
 
+Sample output:
+![example_output](example_out.pdf)
+
 ### Contributors
 - [David Hunt](davhunt@iu.edu)
 
