@@ -14,5 +14,5 @@ for i in $(seq 0 $numFsDirs); do
   ln -sf ${abspath} `pwd`/workdir/output${i}
 done
 
-time singularity exec -e docker://davhunt/r-qoala:1.0.1 bash -c "Rscript ./Stats2Table.R `pwd` && \
+time singularity exec -e -B /N/slate/davhunt/workflows:/N/slate/davhunt/workflows docker://davhunt/r-qoala:1.0.1 bash -c "Rscript ./Stats2Table.R `pwd` && \
     Rscript ./Qoala_T_A_model_based_github.R `pwd`"
