@@ -3,6 +3,38 @@
 
 # Qoala-T
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+> **Rates the quality of FreeSurfer segmentations with the Qoala-T supervised model (BrainTime model A) and outputs a PDF rating figure and per-subject predictions.**
+
+Collects aseg and aparc statistics from one or more FreeSurfer subject directories into a table (Stats2Table.R), then applies the pre-trained Qoala-T random-forest model to give each subject a quality score and flag scans that should be excluded or checked manually. Use it for quality control of FreeSurfer output in larger datasets. It needs FreeSurfer stats files (aseg.stats, aparc stats) for each subject.
+
+| | |
+|---|---|
+| 📥 **Inputs** | `neuro/freesurfer` |
+| 📤 **Outputs** | `report/pdf` |
+| 🐳 **Container** | `davhunt/r-qoala:1.0.1` |
+| ⚙️ **Resources** | 1 CPUs · 30 GB memory · 0.17 h walltime |
+| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.386](https://doi.org/10.25663/brainlife.app.386) |
+
+#### 📥 Inputs
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `fs` | `neuro/freesurfer` | yes | FreeSurfer subject directories (one or more) whose segmentations are rated. Each directory needs stats/aseg.stats and lh/rh aparc stats. |
+
+#### 📤 Outputs
+
+| Output | Datatype | Description |
+|---|---|---|
+| `Output_Qoala_T` | `report/pdf` | Qoala-T rating figure (PDF) plus the stats table and Qoala-T prediction CSV. |
+
+📚 **References used by this App:**
+- Klapwijk ET, van de Kamp F, van der Meulen M, Peters S, Wierenga LM. Qoala-T: A supervised-learning tool for quality control of FreeSurfer segmented MRI data. NeuroImage 189:116-129 (2019). [doi:10.1016/j.neuroimage.2019.01.014](https://doi.org/10.1016/j.neuroimage.2019.01.014)
+- Avesani P, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
+
+<!-- brainlife-app:end -->
+
 This app uses a supervised learning model trained on 784 Freesurfer subjects, to rate the quality of novel subjects' Freesurfer segmentations with a "Qoala-T" score, as described [here](https://www.sciencedirect.com/science/article/pii/S1053811919300138) and in the [Github repo](https://github.com/Qoala-T/QC#a-predicting-scan-qoala-t-score-by-using-braintime-model).
 
 Given a set of subjects processed with Freesurfer, Qoala-T gives each subject's segmentations a rating and indicates whether the data should be excluded and/or given manual QC. The tool is ideal then for large datasets where manual QC may be infeasible, and for developmental subjects who may have lower quality scans.
